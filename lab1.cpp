@@ -1,11 +1,14 @@
 #include <iostream>
 #include <math.h>
+#include <string.h>
+using namespace std;
+
 class Informer
 {
 public:
-    Informer() { std::cout << "Construct inner\n"; };
+    // Informer() { std::cout << "Construct inner\n"; };
 
-    ~Informer() { std::cout << "Destruct inner\n"; }
+    //~Informer() { std::cout << "Destruct inner\n"; }
 };
 
 class Wektor2D
@@ -25,9 +28,9 @@ public:
     }
     ~Wektor2D()
     {
-        std::cout << "Destruct "
-                  << "x=" << x << " "
-                  << "y=" << y << "\n";
+        // std::cout << "Destruct "
+        //          << "x=" << x << " "
+        //          << "y=" << y << "\n";
     }
 
     void   setX(double x_val) { x = x_val; };
@@ -43,16 +46,25 @@ public:
         return y;
     };
 
-    double norm() { return sqrt(x * x + y * y); }
+    double               norm() { return sqrt(x * x + y * y); }
+    friend std::ostream& operator<<(std::ostream& os, const Wektor2D& W);
 };
 Wektor2D operator+(Wektor2D vec_1, Wektor2D vec_2)
 {
-    Wektor2D vec_result{vec_1.getX() + vec_2.getX(), vec_1.getY() + vec_2.getY()};
+    return Wektor2D{vec_1.getX() + vec_2.getX(), vec_1.getY() + vec_2.getY()};
 };
+
+std::ostream& operator<<(std::ostream& os, const Wektor2D& W)
+{
+    os << "[" << W.x << ", " << W.y << "]";
+    return os;
+}
+
 int main()
 {
     Wektor2D dupa1{1, 1};
     Wektor2D dupa2{2, 2};
     Wektor2D result;
     result = dupa1 + dupa2;
+    cout << result;
 }
