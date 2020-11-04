@@ -1,18 +1,25 @@
 #include <iostream>
 #include <math.h>
-struct Informer
+class Informer
 {
+public:
     Informer() { std::cout << "Construct inner\n"; };
 
     ~Informer() { std::cout << "Destruct inner\n"; }
 };
 
-struct Wektor2D
+class Wektor2D
 {
+private:
+    double   x;
+    double   y;
+    Informer info1;
+
+public:
     Wektor2D(double x_val, double y_val)
     {
-        x = x_val;
-        y = y_val;
+        setX(x_val);
+        setY(y_val);
         std::cout << "x=" << x << " "
                   << "y=" << y << "\n";
     }
@@ -22,9 +29,11 @@ struct Wektor2D
                   << "x=" << x << " "
                   << "y=" << y << "\n";
     }
-    double   x;
-    double   y;
-    Informer info1;
+
+    void setX(double x_val) { x = x_val; };
+    void setY(double y_val) { y = y_val; };
+    void getX() { std::cout << x; };
+    void getY() { std::cout << y; };
 
     double norm() { return sqrt(x * x + y * y); }
 };
@@ -32,6 +41,5 @@ struct Wektor2D
 int main()
 {
     Wektor2D dupa1{1, 1};
-    Wektor2D dupa2{2, 2};
-    Wektor2D dupa3{3, 3};
+    dupa1.setX(5);
 }
