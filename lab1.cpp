@@ -35,15 +35,30 @@ public:
         return y;
     };
     friend Wektor2D operator+(Wektor2D vec_1, Wektor2D vec_2);
-    friend Wektor2D operator*(Wektor2D vec_1, Wektor2D vec_2);
+    friend double operator*(Wektor2D vec_1, Wektor2D vec_2);
 };
 Wektor2D operator+(Wektor2D vec_1, Wektor2D vec_2)
 {
     return Wektor2D{vec_1.x + vec_2.x, vec_1.y + vec_2.y};
 };
 
-Wektor2D operator*(Wektor2D vec_1, Wektor2D vec_2)
+double operator*(Wektor2D vec_1, Wektor2D vec_2)
 {
-  return Wektor2D{vec_1.x * vec_2.x, vec_1.y * vec_2.y};
+  return double {vec_1.x * vec_2.x + vec_1.y * vec_2.y};
 }
+int main()
+{
+Wektor2D v1{};           // Konstruktor domyślny, wektor o wsp. [0, 0]
+v1.setX(1.);             // setter
+v1.setY(1.);             // setter
+double x1 = v1.getX();   // getter
+double y1 = v1.getY();   // getter
+ 
+Wektor2D v2{2., 2.}; // Konstruktor nadający współrzędne
+ 
+Wektor2D sum = v1 + v2; // dodawanie wektorów
+ 
+double prod = v1 * v2; // iloczyn skalarny
 
+return 0;
+};
