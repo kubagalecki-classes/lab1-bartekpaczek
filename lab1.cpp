@@ -16,7 +16,7 @@ private:
     Informer info1;
 
 public:
-    Wektor2D(double x_val, double y_val)
+    Wektor2D(double x_val = 0, double y_val = 0)
     {
         setX(x_val);
         setY(y_val);
@@ -30,16 +30,29 @@ public:
                   << "y=" << y << "\n";
     }
 
-    void setX(double x_val) { x = x_val; };
-    void setY(double y_val) { y = y_val; };
-    void getX() { std::cout << x; };
-    void getY() { std::cout << y; };
+    void   setX(double x_val) { x = x_val; };
+    void   setY(double y_val) { y = y_val; };
+    double getX()
+    {
+        std::cout << x;
+        return x;
+    };
+    double getY()
+    {
+        std::cout << y;
+        return y;
+    };
 
     double norm() { return sqrt(x * x + y * y); }
 };
-
+Wektor2D operator+(Wektor2D vec_1, Wektor2D vec_2)
+{
+    Wektor2D vec_result{vec_1.getX() + vec_2.getX(), vec_1.getY() + vec_2.getY()};
+};
 int main()
 {
     Wektor2D dupa1{1, 1};
-    dupa1.setX(5);
+    Wektor2D dupa2{2, 2};
+    Wektor2D result;
+    result = dupa1 + dupa2;
 }
