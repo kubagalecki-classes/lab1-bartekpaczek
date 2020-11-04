@@ -16,55 +16,34 @@ class Wektor2D
 private:
     double   x;
     double   y;
-    Informer info1;
 
 public:
     Wektor2D(double x_val = 0, double y_val = 0)
     {
         setX(x_val);
         setY(y_val);
-        std::cout << "x=" << x << " "
-                  << "y=" << y << "\n";
-    }
-    ~Wektor2D()
-    {
-        // std::cout << "Destruct "
-        //          << "x=" << x << " "
-        //          << "y=" << y << "\n";
     }
 
     void   setX(double x_val) { x = x_val; };
     void   setY(double y_val) { y = y_val; };
     double getX()
     {
-        std::cout << x;
         return x;
     };
     double getY()
     {
-        std::cout << y;
         return y;
     };
-
-    double               norm() { return sqrt(x * x + y * y); }
-    friend std::ostream& operator<<(std::ostream& os, const Wektor2D& W);
+    friend Wektor2D operator+(Wektor2D vec_1, Wektor2D vec_2);
+    friend Wektor2D operator*(Wektor2D vec_1, Wektor2D vec_2);
 };
 Wektor2D operator+(Wektor2D vec_1, Wektor2D vec_2)
 {
-    return Wektor2D{vec_1.getX() + vec_2.getX(), vec_1.getY() + vec_2.getY()};
+    return Wektor2D{vec_1.x + vec_2.x, vec_1.y + vec_2.y};
 };
 
-std::ostream& operator<<(std::ostream& os, const Wektor2D& W)
+Wektor2D operator*(Wektor2D vec_1, Wektor2D vec_2)
 {
-    os << "[" << W.x << ", " << W.y << "]";
-    return os;
+  return Wektor2D{vec_1.x * vec_2.x, vec_1.y * vec_2.y};
 }
 
-int main()
-{
-    Wektor2D dupa1{1, 1};
-    Wektor2D dupa2{2, 2};
-    Wektor2D result;
-    result = dupa1 + dupa2;
-    cout << result;
-}
